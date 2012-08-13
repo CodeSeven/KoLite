@@ -8,24 +8,31 @@
 
 ## Quick start
 ### asyncCommand 
-<button data-bind="command: loadCmd">Save</button>
-
+<pre>
+&lt;button data-bind="command: loadCmd">Save&lt;/button>
+</pre>
+<pre>
 saveCmd = ko.asyncCommand({
 	execute: function(complete) { ... }
 })
-
+</pre>
 
 ### asyncCommand and Activity
-<button data-bind="activity: saveCmd.isExecuting, command: saveCmd">Save</button>
+<pre>
+&lt;button data-bind="activity: saveCmd.isExecuting, command: saveCmd">Save&lt;/button>
+</pre>
 
+<pre>
 saveCmd = ko.asyncCommand({
 	execute: function(complete) { ... },
 	canExecute: function(isExecuting) {
             return !isExecuting && self.isDirty() // your own flag to check if you should save or not
         }
 })
+</pre>
 
 ### dirtyFlag
+<pre>
 // Your model
 var Person = function () {
 	var self = this;
@@ -35,14 +42,20 @@ var Person = function () {
 	self.dirtyFlag = new ko.DirtyFlag([self.firstName,self.lastName]);
 	return self;
 };
+</pre>
 
 Hook these into your viewmodel ...
 
+<pre>
 //Did It Change?          
 viewModel.dirtyFlag().isDirty();
+</pre>
 
+<pre>
 //Resync Changes
 viewModel.dirtyFlag().reset();
+</pre>
+
 
 ## Authors
 
