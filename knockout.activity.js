@@ -253,7 +253,8 @@
         createTemporaryIcon: function() {
             if (this.onlyIcon)
                 return;
-            this.temporaryIcon = $('<i class="icon-" style="padding-left: 5px"></i>');
+            //this.temporaryIcon = $('<i class="icon-" style="padding-left: 5px"></i>');
+            this.temporaryIcon = $('<i style="display: inline-block; padding-left: 5px; width: 14px;"></i>');
             this.$element.append(this.temporaryIcon);
         },
 
