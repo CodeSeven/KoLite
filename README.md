@@ -57,13 +57,17 @@ var Person = function () {
 Hook these into your viewmodel ...
 
 <pre>
-//Did It Change?          
-viewModel.dirtyFlag().isDirty();
+
+//Property on your view model. mYperson is an instance of Person.
+//Did it Change?
+isDirty = ko.computed(function () {
+	return myPerson().dirtyFlag().isDirty();
+}),
 </pre>
 
 <pre>
 //Resync Changes
-viewModel.dirtyFlag().reset();
+dirtyFlag().reset();
 </pre>
 
 
