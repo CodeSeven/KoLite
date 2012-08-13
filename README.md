@@ -93,4 +93,4 @@ Copyright © 2012 [Hans Fjällemark](http://twitter.com/hfjallemark) & [John Pap
 
 ## License 
 
-toastr is under MIT license - http://www.opensource.org/licenses/mit-license.php
+KoLite is under MIT license - http://www.opensource.org/licenses/mit-license.php
