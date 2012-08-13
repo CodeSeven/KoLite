@@ -5,11 +5,6 @@
 2. activity
 3. dirtyFlag
 
-
-## Depends on
-&lt;= jQuery 1.4.4
-&lt;= KnockoutJS 2.0.0
-
 ## Current Version
 1.0.3
 
@@ -75,6 +70,14 @@ isDirty = ko.computed(function () {
 //Resync Changes
 dirtyFlag().reset();
 </pre>
+
+
+
+## Depends on
+&lt;= jQuery 1.4.4
+
+&lt;= KnockoutJS 2.0.0
+
 
 
 ## Authors
