@@ -13,21 +13,22 @@
 ## Quick start
 ### asyncCommand 
 <pre>
-&lt;button data-bind="command: loadCmd">Save&lt;/button>
+&lt;button data-bind="command: saveCommand">Save&lt;/button>
 </pre>
 <pre>
-saveCmd = ko.asyncCommand({
-	execute: function(complete) { ... }
+saveCommand = ko.asyncCommand({
+	execute: function(complete) { ... },
+	canExecute: function(isExecuting) { ... }
 })
 </pre>
 
 ### asyncCommand and activity
 <pre>
-&lt;button data-bind="activity: saveCmd.isExecuting, command: saveCmd">Save&lt;/button>
+&lt;button data-bind="activity: saveCommand.isExecuting, command: saveCommand">Save&lt;/button>
 </pre>
 
 <pre>
-saveCmd = ko.asyncCommand({
+saveCommand = ko.asyncCommand({
 	execute: function(complete) { ... },
 	canExecute: function(isExecuting) {
             return !isExecuting && self.isDirty() // your own flag to check if you should save or not
