@@ -7,8 +7,8 @@
 
 
 ## Depends on
->= jQuery 1.4.4
->= KnockoutJS 2.0.0
+&lt;= jQuery 1.4.4
+&lt;= KnockoutJS 2.0.0
 
 ## Current Version
 1.0.2
