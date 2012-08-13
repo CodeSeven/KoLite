@@ -58,7 +58,7 @@ Hook these into your viewmodel ...
 
 <pre>
 
-//Property on your view model. mYperson is an instance of Person.
+//Property on your view model. myPerson is an instance of Person.
 //Did it Change?
 isDirty = ko.computed(function () {
 	return myPerson().dirtyFlag().isDirty();
