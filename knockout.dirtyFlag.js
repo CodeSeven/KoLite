@@ -1,4 +1,7 @@
-﻿// Knockout.DirtyFlag
+﻿// By: Hans Fjällemark and John Papa
+// https://github.com/CodeSeven/KoLite
+//
+// Knockout.DirtyFlag
 //
 // John Papa 
 //          http://johnpapa.net
