@@ -16,24 +16,29 @@
 &lt;button data-bind="command: saveCommand">Save&lt;/button>
 </pre>
 <pre>
-saveCommand = ko.asyncCommand({
-	execute: function(complete) { ... },
-	canExecute: function(isExecuting) { ... }
+self.saveCommand = ko.asyncCommand({
+    execute: function(callback) {
+        $.ajax({
+            complete: callback,
+            data: { name: self.name() },
+            type: 'POST',
+            url: '/save/,
+                    
+            success: function(result) {
+                alert('Name saved:' + result)
+            }
+        })
+    },
+        
+    canExecute: function(isExecuting) {
+        return !isExecuting && self.name()
+    }
 })
 </pre>
 
 ### asyncCommand and activity
 <pre>
 &lt;button data-bind="activity: saveCommand.isExecuting, command: saveCommand">Save&lt;/button>
-</pre>
-
-<pre>
-saveCommand = ko.asyncCommand({
-	execute: function(complete) { ... },
-	canExecute: function(isExecuting) {
-            return !isExecuting && self.isDirty() // your own flag to check if you should save or not
-        }
-})
 </pre>
 
 ### dirtyFlag
