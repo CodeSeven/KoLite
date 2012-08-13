@@ -1,7 +1,3 @@
-KoLite
-======
-
-
 # KoLite
 **KoLite** KoLite contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout.
 
@@ -19,7 +15,7 @@ Demo can be found TODO
 
 ## Authors
 
-**Hans Fjällemark**
+**Hans FjÃ¤llemark**
 
 + http://twitter.com/hfjallemark
 
@@ -33,7 +29,7 @@ Inspired by http://KnockoutJS.com
 
 ## Copyright
 
-Copyright © 2012 [Hans Fjällemark](http://twitter.com/hfjallemark) & [John Papa](http://twitter.com/John_Papa).
+Copyright Â© 2012 [Hans FjÃ¤llemark](http://twitter.com/hfjallemark) & [John Papa](http://twitter.com/John_Papa).
 
 ## License 
 
