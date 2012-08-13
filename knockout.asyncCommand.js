@@ -33,7 +33,7 @@
 })(ko);
 	
 
-;(function ($, ko) {
+;(function (ko) {
     ko.bindingHandlers.command = {
         init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
             var value = valueAccessor();
@@ -57,4 +57,4 @@
             ko.bindingHandlers.enable.update(element, canExecute, allBindingsAccessor, viewModel);
         }
     };
-})(jQuery, ko);
+})(ko);

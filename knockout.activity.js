@@ -102,7 +102,6 @@
                 return;
             }
 
-            // TODO: figure out some better way to make this fill the container ($this)
             var length = Math.round($element.height() / 4);
             var isInput = $element.is('input');
 
