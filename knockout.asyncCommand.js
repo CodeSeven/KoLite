@@ -34,6 +34,12 @@
 	
 
 ;(function (ko) {
+    ko.utils.wrapAccessor = function (accessor) {
+        return function () {
+            return accessor;
+        };
+    };
+    
     ko.bindingHandlers.command = {
         init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
             var value = valueAccessor();
@@ -53,7 +59,6 @@
                 return;
             }
 
-            //ko.bindingHandlers.enable.update(element, ko.utils.wrapAccessor(canExecute()), allBindingsAccessor, viewModel);
             ko.bindingHandlers.enable.update(element, canExecute, allBindingsAccessor, viewModel);
         }
     };
