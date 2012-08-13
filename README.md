@@ -11,7 +11,7 @@
 &lt;= KnockoutJS 2.0.0
 
 ## Current Version
-1.0.2
+1.0.3
 
 ##NuGet
 Also available on NuGet at https://nuget.org/packages/KoLite
