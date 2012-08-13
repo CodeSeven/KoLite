@@ -29,7 +29,7 @@ Inspired by http://KnockoutJS.com
 
 ## Copyright
 
-Copyright � 2012 [Hans Fj�llemark](http://twitter.com/hfjallemark) & [John Papa](http://twitter.com/John_Papa).
+Copyright © 2012 [Hans Fjällemark](http://twitter.com/hfjallemark) & [John Papa](http://twitter.com/John_Papa).
 
 ## License 
 
