@@ -22,7 +22,7 @@ self.saveCommand = ko.asyncCommand({
             complete: callback,
             data: { name: self.name() },
             type: 'POST',
-            url: '/save/,
+            url: '/save/',
                     
             success: function(result) {
                 alert('Name saved:' + result)
