@@ -1,31 +1,50 @@
 # KoLite
-**KoLite** KoLite contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout.
+**KoLite** contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout. Including:
+
+1. asyncCommand
+2. activity
+3. dirtyFlag
 
 
 ## Current Version
-1.0.0
+1.0.1
 
+##NuGet
+Also available on NuGet at https://nuget.org/packages/KoLite
 
 ## Quick start
 ### asyncCommand 
-<button data-bind="command: loadCmd">Save</button>
-
-saveCmd = ko.asyncCommand({
-	execute: function(complete) { ... }
+<pre>
+&lt;button data-bind="command: saveCommand">Save&lt;/button>
+</pre>
+<pre>
+self.saveCommand = ko.asyncCommand({
+    execute: function(callback) {
+        $.ajax({
+            complete: callback,
+            data: { name: self.name() },
+            type: 'POST',
+            url: '/save/',
+                    
+            success: function(result) {
+                alert('Name saved:' + result)
+            }
+        })
+    },
+        
+    canExecute: function(isExecuting) {
+        return !isExecuting && self.name()
+    }
 })
+</pre>
 
-
-### asyncCommand and Activity
-<button data-bind="activity: saveCmd.isExecuting, command: saveCmd">Save</button>
-
-saveCmd = ko.asyncCommand({
-	execute: function(complete) { ... },
-	canExecute: function(isExecuting) {
-            return !isExecuting && self.isDirty() // your own flag to check if you should save or not
-        }
-})
+### asyncCommand and activity
+<pre>
+&lt;button data-bind="activity: saveCommand.isExecuting, command: saveCommand">Save&lt;/button>
+</pre>
 
 ### dirtyFlag
+<pre>
 // Your model
 var Person = function () {
 	var self = this;
@@ -35,14 +54,24 @@ var Person = function () {
 	self.dirtyFlag = new ko.DirtyFlag([self.firstName,self.lastName]);
 	return self;
 };
+</pre>
 
 Hook these into your viewmodel ...
 
-//Did It Change?          
-viewModel.dirtyFlag().isDirty();
+<pre>
 
+//Property on your view model. myPerson is an instance of Person.
+//Did it Change?
+isDirty = ko.computed(function () {
+	return myPerson().dirtyFlag().isDirty();
+}),
+</pre>
+
+<pre>
 //Resync Changes
-viewModel.dirtyFlag().reset();
+dirtyFlag().reset();
+</pre>
+
 
 ## Authors
 
