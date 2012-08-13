@@ -15,7 +15,7 @@ Demo can be found TODO
 
 ## Authors
 
-**Hans Fj�llemark**
+**Hans Fjällemark**
 
 + http://twitter.com/hfjallemark
 
