@@ -1,5 +1,9 @@
 # KoLite
-**KoLite** KoLite contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout.
+**KoLite** contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout. Including:
+
+1. asyncCommand
+2. activity
+3. dirtyFlag
 
 
 ## Current Version
@@ -17,7 +21,7 @@ saveCmd = ko.asyncCommand({
 })
 </pre>
 
-### asyncCommand and Activity
+### asyncCommand and activity
 <pre>
 &lt;button data-bind="activity: saveCmd.isExecuting, command: saveCmd">Save&lt;/button>
 </pre>
