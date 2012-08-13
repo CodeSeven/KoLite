@@ -9,6 +9,8 @@
 ## Current Version
 1.0.1
 
+##NuGet
+Also available on NuGet at https://nuget.org/packages/KoLite
 
 ## Quick start
 ### asyncCommand 
