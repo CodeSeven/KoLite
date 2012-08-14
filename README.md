@@ -13,6 +13,7 @@ Also available on NuGet at https://nuget.org/packages/KoLite
 
 ## Quick start
 ### asyncCommand 
+demo: http://jsfiddle.net/johnpapa/FhLvf/
 <pre>
 &lt;button data-bind="command: saveCommand">Save&lt;/button>
 </pre>
