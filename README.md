@@ -75,9 +75,9 @@ dirtyFlag().reset();
 
 
 ## Depends on
-&lt;= jQuery 1.4.4
+&gt;= jQuery 1.4.4
 
-&lt;= KnockoutJS 2.0.0
+&gt;= KnockoutJS 2.0.0
 
 
 
