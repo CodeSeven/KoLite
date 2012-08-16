@@ -38,6 +38,14 @@ self.saveCommand = ko.asyncCommand({
 })
 </pre>
 
+
+### asyncCommand - event other than click
+<pre>
+&lt;div data-bind="command: {onmouseover: tooltipCommand}">Information&lt;/div>
+</pre>
+
+
+
 ### asyncCommand and activity
 <pre>
 &lt;button data-bind="activity: saveCommand.isExecuting, command: saveCommand">Save&lt;/button>
