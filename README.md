@@ -6,14 +6,14 @@
 3. dirtyFlag
 
 ## Current Version
-1.0.3
+1.0.4
 
 ##NuGet
 Also available on NuGet at https://nuget.org/packages/KoLite
 
 ## Quick start
 ### asyncCommand 
-demo: http://jsfiddle.net/johnpapa/FhLvf/
+demo: http://jsfiddle.net/johnpapa/gDZDS/
 <pre>
 &lt;button data-bind="command: saveCommand">Save&lt;/button>
 </pre>
@@ -39,7 +39,23 @@ self.saveCommand = ko.asyncCommand({
 </pre>
 
 
-### asyncCommand - event other than click
+### asyncCommand - Knockout's 'click' binding handler (the default)
+<pre>
+&lt;buttondata-bind="command: onClickCommand">click handler test&lt;/button>
+</pre>
+
+
+### asyncCommand - Knockout's 'change' binding handler (or any Knockout binding handler)
+<pre>
+&lt;select data-bind="command: { change: onChangeCommand }">
+	&lt;option>change handler test - a&lt;/option>
+	&lt;option>change handler test - b&lt;/option>
+&lt;/select>
+</pre>
+
+
+
+### asyncCommand - event (not a Knockout binding handler)
 <pre>
 &lt;div data-bind="command: {onmouseover: tooltipCommand}">Information&lt;/div>
 </pre>
