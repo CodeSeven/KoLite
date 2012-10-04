@@ -53,7 +53,7 @@ self.saveCommand = ko.asyncCommand({
 
 ### asyncCommand - Knockout's 'event' binding handler ([documentation here](http://knockoutjs.com/documentation/event-binding.html))
 <pre>
-&lt;div data-bind="command: { onmouseover: tooltipCommand }">Information&lt;/div>
+&lt;div data-bind="command: { mouseover: tooltipCommand }">Information&lt;/div>
 </pre>
 
 ### asyncCommand and activity
