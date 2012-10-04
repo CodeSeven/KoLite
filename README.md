@@ -38,12 +38,10 @@ self.saveCommand = ko.asyncCommand({
 })
 </pre>
 
-
 ### asyncCommand - Knockout's 'click' binding handler (the default)
 <pre>
 &lt;buttondata-bind="command: onClickCommand">click handler test&lt;/button>
 </pre>
-
 
 ### asyncCommand - Knockout's 'change' binding handler (or any Knockout binding handler)
 <pre>
@@ -53,14 +51,10 @@ self.saveCommand = ko.asyncCommand({
 &lt;/select>
 </pre>
 
-
-
-### asyncCommand - event (not a Knockout binding handler)
+### asyncCommand - Knockout's ['event' binding handler](http://knockoutjs.com/documentation/event-binding.html)
 <pre>
-&lt;div data-bind="command: {onmouseover: tooltipCommand}">Information&lt;/div>
+&lt;div data-bind="command: { onmouseover: tooltipCommand }">Information&lt;/div>
 </pre>
-
-
 
 ### asyncCommand and activity
 <pre>
@@ -72,10 +66,12 @@ self.saveCommand = ko.asyncCommand({
 // Your model
 var Person = function () {
 	var self = this;
+
 	self.id = ko.observable();
 	self.firstName = ko.observable().extend({ required: true });
 	self.lastName = ko.observable().extend({ required: true });
-	self.dirtyFlag = new ko.DirtyFlag([self.firstName,self.lastName]);
+	self.dirtyFlag = new ko.DirtyFlag([self.firstName, self.lastName]);
+
 	return self;
 };
 </pre>
@@ -83,17 +79,16 @@ var Person = function () {
 Hook these into your viewmodel ...
 
 <pre>
-
-//Property on your view model. myPerson is an instance of Person.
-//Did it Change?
+// Property on your view model. myPerson is an instance of Person.
+// Did it Change?
 isDirty = ko.computed(function () {
-	return myPerson().dirtyFlag().isDirty();
-}),
+	return myPerson().dirtyFlag().isDirty()
+})
 </pre>
 
 <pre>
-//Resync Changes
-dirtyFlag().reset();
+// Resync Changes
+dirtyFlag().reset()
 </pre>
 
 

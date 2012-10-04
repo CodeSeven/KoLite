@@ -4,7 +4,7 @@
 (function(ko) {
     ko.asyncCommand = function(options) {
         var
-        self = ko.observable(),
+            self = ko.observable(),
             canExecuteDelegate = options.canExecute,
             executeDelegate = options.execute,
 
@@ -20,6 +20,7 @@
 
         self.execute = function(argument) {
             var args = []; // Allow for this argument to be passed on to execute delegate
+            
             if (executeDelegate.length === 2) {
                 args.push(argument);
             }
@@ -40,33 +41,63 @@
     };
     
     ko.bindingHandlers.command = {
-        init: function(element, valueAccessor, allBindingsAccessor, viewModel) {
-            var value = valueAccessor();
-            var commands = value.execute ? {
-                click: value
-            } : value;
+        init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+            var
+                value = valueAccessor(),
+                commands = value.execute ? { click: value } : value,
 
-            for (var command in commands) {
-                if (ko.bindingHandlers[command]) {
-                    ko.bindingHandlers[command].init(
-                    element, ko.utils.wrapAccessor(commands[command].execute), allBindingsAccessor, viewModel);
-                }
-                else {
-                    var events = {};
+                isBindingHandler = function (handler) {
+                    return ko.bindingHandlers[handler] !== undefined;
+                },
 
+                initBindingHandlers = function () {
                     for (var command in commands) {
-                        events[command] = commands[command].execute;
-                    }
+                        if (!isBindingHandler(command)) {
+                            continue;
+                        };
 
+                        ko.bindingHandlers[command].init(
+                            element,
+                            ko.utils.wrapAccessor(commands[command].execute),
+                            allBindingsAccessor,
+                            viewModel
+                        );
+                    }
+                },
+
+                initEventHandlers = function () {
+                    var events = {};
+                    
+                    for (var command in commands) {
+                        if (!isBindingHandler(command)) {
+                            events[command] = commands[command].execute;
+                        }
+                    }
+                    
                     ko.bindingHandlers.event.init(
-                    element, ko.utils.wrapAccessor(events), allBindingsAccessor, viewModel);
-                }
-            }
+                        element,
+                        ko.utils.wrapAccessor(events),
+                        allBindingsAccessor,
+                        viewModel);
+                };
+
+            initBindingHandlers();
+            initEventHandlers();
         },
 
-        update: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
             var commands = valueAccessor();
-            var canExecute = commands.canExecute || (commands.click ? commands.click.canExecute : null);
+            var canExecute = commands.canExecute;
+            
+            if (!canExecute) {
+                for (var command in commands) {
+                    if (commands[command].canExecute) {
+                        canExecute = commands[command].canExecute;
+                        break;
+                    }
+                }
+            }
+            
             if (!canExecute) {
                 return;
             }
