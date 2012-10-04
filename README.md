@@ -51,7 +51,7 @@ self.saveCommand = ko.asyncCommand({
 &lt;/select>
 </pre>
 
-### asyncCommand - Knockout's ['event' binding handler](http://knockoutjs.com/documentation/event-binding.html)
+### asyncCommand - Knockout's 'event' binding handler ([documentation here](http://knockoutjs.com/documentation/event-binding.html))
 <pre>
 &lt;div data-bind="command: { onmouseover: tooltipCommand }">Information&lt;/div>
 </pre>
