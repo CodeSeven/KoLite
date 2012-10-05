@@ -18,11 +18,15 @@
             return canExecuteDelegate ? canExecuteDelegate(self.isExecuting()) : true;
         });
 
-        self.execute = function(argument) {
+        self.execute = function (arg1, arg2) {
             var args = []; // Allow for this argument to be passed on to execute delegate
             
-            if (executeDelegate.length === 2) {
-                args.push(argument);
+            if (executeDelegate.length >= 2) {
+                args.push(arg1);
+            }
+            
+            if (executeDelegate.length >= 3) {
+                args.push(arg2);
             }
 
             args.push(completeCallback);
