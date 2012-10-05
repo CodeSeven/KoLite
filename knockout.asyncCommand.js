@@ -2,6 +2,23 @@
 // https://github.com/CodeSeven/KoLite
 
 (function(ko) {
+    ko.command = function(options) {
+        var
+            self = ko.observable(),
+            canExecuteDelegate = options.canExecute,
+            executeDelegate = options.execute;
+
+        self.canExecute = ko.computed(function() {
+            return canExecuteDelegate ? canExecuteDelegate() : true;
+        });
+
+        self.execute = function (arg1, arg2) {
+            executeDelegate.apply(this, [arg1, arg2]);
+        };
+        
+        return self;
+    };
+
     ko.asyncCommand = function(options) {
         var
             self = ko.observable(),
@@ -33,6 +50,7 @@
             self.isExecuting(true);
             executeDelegate.apply(this, args);
         };
+
         return self;
     };
 })(ko);
