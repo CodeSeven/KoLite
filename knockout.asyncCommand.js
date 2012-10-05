@@ -19,7 +19,7 @@
         });
 
         self.execute = function (arg1, arg2) {
-            var args = []; // Allow for this argument to be passed on to execute delegate
+            var args = []; // Allow for these arguments to be passed on to execute delegate
             
             if (executeDelegate.length >= 2) {
                 args.push(arg1);
