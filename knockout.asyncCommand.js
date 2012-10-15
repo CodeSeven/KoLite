@@ -32,7 +32,7 @@
         self.isExecuting = ko.observable();
 
         self.canExecute = ko.computed(function() {
-            return canExecuteDelegate ? canExecuteDelegate(self.isExecuting()) : true;
+            return canExecuteDelegate ? canExecuteDelegate(self.isExecuting()) : !self.isExecuting();
         });
 
         self.execute = function (arg1, arg2) {
