@@ -13,6 +13,9 @@
         });
 
         self.execute = function (arg1, arg2) {
+             // Needed for anchors since they don't support the disabled state
+            if (!self.canExecute()) return
+
             executeDelegate.apply(this, [arg1, arg2]);
         };
         
@@ -36,6 +39,9 @@
         });
 
         self.execute = function (arg1, arg2) {
+             // Needed for anchors since they don't support the disabled state
+            if (!self.canExecute()) return
+
             var args = []; // Allow for these arguments to be passed on to execute delegate
             
             if (executeDelegate.length >= 2) {
