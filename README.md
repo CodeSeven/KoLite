@@ -6,8 +6,10 @@
 3. activity
 4. dirtyFlag
 
-## Current Version
-1.1.0
+**Current Version** is 1.1.0
+
+See this post for more details on KoLite: http://www.johnpapa.net/kolite1-1
+
 
 ## Latest Changes 
 1. Command binding handler supports binding to native Knockout bindings as well as the Knockout event binding for DOM events.
