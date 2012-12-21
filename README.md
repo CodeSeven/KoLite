@@ -20,6 +20,8 @@
 
 5. Explicitly do not execute commands when canExecute returns falsy. This is needed for DOM elements like the <a> which cannot be disabled. 
 
+6. Renamed file knockout.asyncCommand.js to knockout.command.js as it now contains both async and sync commands.
+
 ##NuGet
 Also available on NuGet at https://nuget.org/packages/KoLite
 
