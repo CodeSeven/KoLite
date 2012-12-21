@@ -2,11 +2,23 @@
 **KoLite** contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout. Including:
 
 1. asyncCommand
-2. activity
-3. dirtyFlag
+2. command
+3. activity
+4. dirtyFlag
 
 ## Current Version
-1.0.4
+1.1.0
+
+## Latest Changes 
+1. Command binding handler supports binding to native Knockout bindings as well as the Knockout event binding for DOM events.
+
+2. Event object get passed on to callback on event bindings, to determine pressed key or keypress event.
+
+3. Added ko.command as an alternative to ko.asyncCommand for synchronous tasks.
+
+4. The asyncCommand's canExecute now defaults to !isExecuting if no canExecute delegate is specified. This eliminates the need of a canExecute delegate in you view-model when you only want disable the bound element when the command is executing.
+
+5. Explicitly do not execute commands when canExecute returns falsy. This is needed for DOM elements like the <a> which cannot be disabled. 
 
 ##NuGet
 Also available on NuGet at https://nuget.org/packages/KoLite
