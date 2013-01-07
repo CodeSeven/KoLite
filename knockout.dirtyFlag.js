@@ -42,6 +42,11 @@
                 result = function () {
                     var self = this;
 
+                    self.forceDirty = function ()
+                    {
+                        _isInitiallyDirty(true);
+                    };
+
                     self.isDirty = ko.computed(function () {
                         return _isInitiallyDirty() || hashFunction(_objectToTrack) !== _lastCleanState();
                     });
