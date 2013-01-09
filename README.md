@@ -59,7 +59,7 @@ self.saveCommand = ko.asyncCommand({
 
 ### asyncCommand - Knockout's 'click' binding handler (the default)
 <pre>
-&lt;buttondata-bind="command: onClickCommand">click handler test&lt;/button>
+&lt;button data-bind="command: onClickCommand">click handler test&lt;/button>
 </pre>
 
 ### asyncCommand - Knockout's 'change' binding handler (or any Knockout binding handler)
