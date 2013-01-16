@@ -5,7 +5,7 @@
     ko.command = function(options) {
         var
             self = function() {
-                self.execute.apply(this, arguments);
+                return self.execute.apply(this, arguments);
             },
             canExecuteDelegate = options.canExecute,
             executeDelegate = options.execute;
@@ -18,7 +18,7 @@
              // Needed for anchors since they don't support the disabled state
             if (!self.canExecute()) return
 
-            executeDelegate.apply(this, [arg1, arg2]);
+            return executeDelegate.apply(this, [arg1, arg2]);
         };
         
         return self;
@@ -27,7 +27,7 @@
     ko.asyncCommand = function(options) {
         var
             self = function() {
-                self.execute.apply(this, arguments);
+                return self.execute.apply(this, arguments);
             },
             canExecuteDelegate = options.canExecute,
             executeDelegate = options.execute,
@@ -58,7 +58,7 @@
 
             args.push(completeCallback);
             self.isExecuting(true);
-            executeDelegate.apply(this, args);
+            return executeDelegate.apply(this, args);
         };
 
         return self;
