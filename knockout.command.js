@@ -4,7 +4,9 @@
 (function(ko) {
     ko.command = function(options) {
         var
-            self = ko.observable(),
+            self = function() {
+                self.execute.apply(this, arguments);
+            },
             canExecuteDelegate = options.canExecute,
             executeDelegate = options.execute;
 
@@ -24,7 +26,9 @@
 
     ko.asyncCommand = function(options) {
         var
-            self = ko.observable(),
+            self = function() {
+                self.execute.apply(this, arguments);
+            },
             canExecuteDelegate = options.canExecute,
             executeDelegate = options.execute,
 
