@@ -28,7 +28,7 @@ See this post for more details on KoLite: http://www.johnpapa.net/kolite1-1
 Also available on NuGet at https://nuget.org/packages/KoLite
 
 ##Super Quick Start
-You can check out this fiddle to see the asyncCommand, command and activity in action. http://jpapa.me/T5LLcw
+You can check out this fiddle to see the asyncCommand, command and activity in action. http://jsfiddle.net/hfjallemark/zEKRb/
 
 ## Quick Start
 ### asyncCommand 
