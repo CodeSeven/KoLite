@@ -110,6 +110,11 @@ isDirty = ko.computed(function () {
 dirtyFlag().reset()
 </pre>
 
+<pre>
+// Force into dirty state
+dirtyFlag().forceDirty()
+</pre>
+
 
 
 ## Depends on
