@@ -32,7 +32,7 @@ You can check out this fiddle to see the asyncCommand, command and activity in a
 
 ## Quick Start
 ### asyncCommand 
-demo: http://jsfiddle.net/johnpapa/gDZDS/
+demo: http://jsfiddle.net/hfjallemark/zEKRb/
 <pre>
 &lt;button data-bind="command: saveCommand">Save&lt;/button>
 </pre>
