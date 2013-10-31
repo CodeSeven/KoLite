@@ -73,7 +73,7 @@
     };
     
     ko.bindingHandlers.command = {
-        init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+        init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var
                 value = valueAccessor(),
                 commands = value.execute ? { click: value } : value,
@@ -92,7 +92,8 @@
                             element,
                             ko.utils.wrapAccessor(commands[command].execute),
                             allBindingsAccessor,
-                            viewModel
+                            viewModel,
+                            bindingContext
                         );
                     }
                 },
@@ -110,14 +111,15 @@
                         element,
                         ko.utils.wrapAccessor(events),
                         allBindingsAccessor,
-                        viewModel);
+                        viewModel,
+                        bindingContext);
                 };
 
             initBindingHandlers();
             initEventHandlers();
         },
 
-        update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var commands = valueAccessor();
             var canExecute = commands.canExecute;
             
@@ -134,7 +136,7 @@
                 return;
             }
 
-            ko.bindingHandlers.enable.update(element, canExecute, allBindingsAccessor, viewModel);
+            ko.bindingHandlers.enable.update(element, canExecute, allBindingsAccessor, viewModel, bindingContext);
         }
     };
 })(ko);
