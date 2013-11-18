@@ -233,7 +233,7 @@
 })(jQuery);
 
 
-// By: Hans Fjällemark and John Papa
+// By: Hans Fjï¿½llemark and John Papa
 // https://github.com/CodeSeven/KoLite
 
 ;(function($) {
@@ -374,7 +374,8 @@
         },
 
         update: function (element, valueAccessor) {
-            var activity = valueAccessor()();
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            var activity = $.isFunction(value) ? value() : value;
             typeof activity !== 'boolean' || $(element).activityEx(activity);
         }
     };
