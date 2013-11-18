@@ -35,12 +35,16 @@
             hashFunction = hashFunction || ko.toJSON;
 
             var
+                self = this,
                 _objectToTrack = objectToTrack,
                 _lastCleanState = ko.observable(hashFunction(_objectToTrack)),
                 _isInitiallyDirty = ko.observable(isInitiallyDirty),
 
                 result = function () {
-                    var self = this;
+                    self.forceDirty = function ()
+                    {
+                        _isInitiallyDirty(true);
+                    };
 
                     self.isDirty = ko.computed(function () {
                         return _isInitiallyDirty() || hashFunction(_objectToTrack) !== _lastCleanState();
@@ -50,10 +54,9 @@
                         _lastCleanState(hashFunction(_objectToTrack));
                         _isInitiallyDirty(false);
                     };
-
                     return self;
                 };
-            
+
             return result;
         };
     })(ko);

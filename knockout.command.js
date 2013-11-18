@@ -4,7 +4,9 @@
 (function(ko) {
     ko.command = function(options) {
         var
-            self = ko.observable(),
+            self = function() {
+                return self.execute.apply(this, arguments);
+            },
             canExecuteDelegate = options.canExecute,
             executeDelegate = options.execute;
 
@@ -16,7 +18,7 @@
              // Needed for anchors since they don't support the disabled state
             if (!self.canExecute()) return
 
-            executeDelegate.apply(this, [arg1, arg2]);
+            return executeDelegate.apply(this, [arg1, arg2]);
         };
         
         return self;
@@ -24,7 +26,9 @@
 
     ko.asyncCommand = function(options) {
         var
-            self = ko.observable(),
+            self = function() {
+                return self.execute.apply(this, arguments);
+            },
             canExecuteDelegate = options.canExecute,
             executeDelegate = options.execute,
 
@@ -54,7 +58,7 @@
 
             args.push(completeCallback);
             self.isExecuting(true);
-            executeDelegate.apply(this, args);
+            return executeDelegate.apply(this, args);
         };
 
         return self;
@@ -69,7 +73,7 @@
     };
     
     ko.bindingHandlers.command = {
-        init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+        init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var
                 value = valueAccessor(),
                 commands = value.execute ? { click: value } : value,
@@ -88,7 +92,8 @@
                             element,
                             ko.utils.wrapAccessor(commands[command].execute),
                             allBindingsAccessor,
-                            viewModel
+                            viewModel,
+                            bindingContext
                         );
                     }
                 },
@@ -106,14 +111,15 @@
                         element,
                         ko.utils.wrapAccessor(events),
                         allBindingsAccessor,
-                        viewModel);
+                        viewModel,
+                        bindingContext);
                 };
 
             initBindingHandlers();
             initEventHandlers();
         },
 
-        update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var commands = valueAccessor();
             var canExecute = commands.canExecute;
             
@@ -130,7 +136,7 @@
                 return;
             }
 
-            ko.bindingHandlers.enable.update(element, canExecute, allBindingsAccessor, viewModel);
+            ko.bindingHandlers.enable.update(element, canExecute, allBindingsAccessor, viewModel, bindingContext);
         }
     };
 })(ko);
