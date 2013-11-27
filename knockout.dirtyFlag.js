@@ -3,23 +3,23 @@
 //
 // Knockout.DirtyFlag
 //
-// John Papa 
+// John Papa
 //          http://johnpapa.net
 //          http://twitter.com/@john_papa
 //
 // Depends on scripts:
-//          Knockout 
+//          Knockout
 //
 //  Notes:
-//          Special thanks to Steve Sanderson and Ryan Niemeyer for 
+//          Special thanks to Steve Sanderson and Ryan Niemeyer for
 //          their influence and help.
 //
-//  Usage:      
-//          To Setup Tracking, add this tracker property to your viewModel    
+//  Usage:
+//          To Setup Tracking, add this tracker property to your viewModel
 //              ===> viewModel.dirtyFlag = new ko.DirtyFlag(viewModel.model);
 //
 //          Hook these into your view ...
-//              Did It Change?          
+//              Did It Change?
 //              ===> viewModel.dirtyFlag().isDirty();
 //
 //          Hook this into your view model functions (ex: load, save) ...
@@ -29,34 +29,47 @@
 //          Optionally, you can pass your own hashFunction for state tracking.
 //
 ////////////////////////////////////////////////////////////////////////////////////////
-;(function (ko) {
-        ko.DirtyFlag = function (objectToTrack, isInitiallyDirty, hashFunction) {
 
-            hashFunction = hashFunction || ko.toJSON;
+(function (factory) {
+    if (typeof require === "function" && typeof exports === "object" && typeof module === "object") {
+        factory(require("knockout"), exports);
+    } else if (typeof define === "function" && define["amd"]) {
+        define(["knockout", "exports"], factory);
+    } else {
+        factory(ko, ko);
+    }
+}(function (ko, exports) {
+    if (typeof (ko) === undefined) {
+        throw 'Knockout is required, please ensure it is loaded before loading the dirty flag plug-in';
+    }
 
-            var
-                self = this,
-                _objectToTrack = objectToTrack,
-                _lastCleanState = ko.observable(hashFunction(_objectToTrack)),
-                _isInitiallyDirty = ko.observable(isInitiallyDirty),
+    exports.DirtyFlag = function (objectToTrack, isInitiallyDirty, hashFunction) {
 
-                result = function () {
-                    self.forceDirty = function ()
-                    {
-                        _isInitiallyDirty(true);
-                    };
+        hashFunction = hashFunction || ko.toJSON;
 
-                    self.isDirty = ko.computed(function () {
-                        return _isInitiallyDirty() || hashFunction(_objectToTrack) !== _lastCleanState();
-                    });
+        var
+            self = this,
+            _objectToTrack = objectToTrack,
+            _lastCleanState = ko.observable(hashFunction(_objectToTrack)),
+            _isInitiallyDirty = ko.observable(isInitiallyDirty),
 
-                    self.reset = function () {
-                        _lastCleanState(hashFunction(_objectToTrack));
-                        _isInitiallyDirty(false);
-                    };
-                    return self;
+            result = function () {
+                self.forceDirty = function ()
+                {
+                    _isInitiallyDirty(true);
                 };
 
-            return result;
-        };
-    })(ko);
+                self.isDirty = ko.computed(function () {
+                    return _isInitiallyDirty() || hashFunction(_objectToTrack) !== _lastCleanState();
+                });
+
+                self.reset = function () {
+                    _lastCleanState(hashFunction(_objectToTrack));
+                    _isInitiallyDirty(false);
+                };
+                return self;
+            };
+
+        return result;
+    };
+}));
