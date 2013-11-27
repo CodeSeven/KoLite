@@ -1,8 +1,26 @@
 ﻿// By: Hans Fjällemark and John Papa
 // https://github.com/CodeSeven/KoLite
 
-(function(ko) {
-    ko.command = function(options) {
+(function (factory) {
+    if (typeof require === "function" && typeof exports === "object" && typeof module === "object") {
+        factory(require("knockout"), exports);
+    } else if (typeof define === "function" && define["amd"]) {
+        define(["knockout", "exports"], factory);
+    } else {
+        factory(ko, ko);
+    }
+}(function (ko, exports) {
+    if (typeof (ko) === undefined) {
+        throw 'Knockout is required, please ensure it is loaded before loading the commanding plug-in';
+    }
+
+    function wrapAccessor(accessor) {
+        return function () {
+            return accessor;
+        };
+    };
+
+    exports.command = function(options) {
         var
             self = function() {
                 return self.execute.apply(this, arguments);
@@ -20,11 +38,11 @@
 
             return executeDelegate.apply(this, [arg1, arg2]);
         };
-        
+
         return self;
     };
 
-    ko.asyncCommand = function(options) {
+    exports.asyncCommand = function(options) {
         var
             self = function() {
                 return self.execute.apply(this, arguments);
@@ -47,11 +65,11 @@
             if (!self.canExecute()) return
 
             var args = []; // Allow for these arguments to be passed on to execute delegate
-            
+
             if (executeDelegate.length >= 2) {
                 args.push(arg1);
             }
-            
+
             if (executeDelegate.length >= 3) {
                 args.push(arg2);
             }
@@ -63,15 +81,7 @@
 
         return self;
     };
-})(ko);
 
-;(function (ko) {
-    ko.utils.wrapAccessor = function (accessor) {
-        return function () {
-            return accessor;
-        };
-    };
-    
     ko.bindingHandlers.command = {
         init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var
@@ -90,7 +100,7 @@
 
                         ko.bindingHandlers[command].init(
                             element,
-                            ko.utils.wrapAccessor(commands[command].execute),
+                            wrapAccessor(commands[command].execute),
                             allBindingsAccessor,
                             viewModel,
                             bindingContext
@@ -100,16 +110,16 @@
 
                 initEventHandlers = function () {
                     var events = {};
-                    
+
                     for (var command in commands) {
                         if (!isBindingHandler(command)) {
                             events[command] = commands[command].execute;
                         }
                     }
-                    
+
                     ko.bindingHandlers.event.init(
                         element,
-                        ko.utils.wrapAccessor(events),
+                        wrapAccessor(events),
                         allBindingsAccessor,
                         viewModel,
                         bindingContext);
@@ -122,7 +132,7 @@
         update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var commands = valueAccessor();
             var canExecute = commands.canExecute;
-            
+
             if (!canExecute) {
                 for (var command in commands) {
                     if (commands[command].canExecute) {
@@ -131,7 +141,7 @@
                     }
                 }
             }
-            
+
             if (!canExecute) {
                 return;
             }
@@ -139,4 +149,4 @@
             ko.bindingHandlers.enable.update(element, canExecute, allBindingsAccessor, viewModel, bindingContext);
         }
     };
-})(ko);
+}));
