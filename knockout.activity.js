@@ -75,7 +75,7 @@
     };
 
     /**
-	 * Default rendering strategy. If neither SVG nor VML is available, a div with class-name 'busy' 
+	 * Default rendering strategy. If neither SVG nor VML is available, a div with class-name 'busy'
 	 * is inserted, that can be styled with CSS to display an animated gif as fallback.
 	 */
     var render = function () {
@@ -156,7 +156,7 @@
                         rule += p1 + value + p2 + value;
                     }
                     rule += '100% { -webkit-transform:rotate(100deg); }\n}';
-                    document.styleSheets[0].insertRule(rule, document.styleSheets[0].cssRules.length);
+                    document.styleSheets[0].insertRule(rule, 0);
                     animations[steps] = name;
                 }
                 el.css('-webkit-animation', animations[steps] + ' ' + duration + 's linear infinite');
@@ -196,7 +196,7 @@
             });
 
             /**
-			 * Rendering strategy that creates a VML tree. 
+			 * Rendering strategy that creates a VML tree.
 			 */
             render = function (target, d) {
 
