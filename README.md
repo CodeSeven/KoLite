@@ -20,7 +20,7 @@ See this post for more details on KoLite: http://www.johnpapa.net/kolite1-1
 
 4. The asyncCommand's canExecute now defaults to !isExecuting if no canExecute delegate is specified. This eliminates the need of a canExecute delegate in you view-model when you only want disable the bound element when the command is executing.
 
-5. Explicitly do not execute commands when canExecute returns falsy. This is needed for DOM elements like the <a> which cannot be disabled. 
+5. Explicitly do not execute commands when canExecute returns falsy. This is needed for DOM elements like the `<a>` which cannot be disabled. 
 
 6. Renamed file knockout.asyncCommand.js to knockout.command.js as it now contains both async and sync commands.
 
