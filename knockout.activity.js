@@ -15,14 +15,8 @@
     throw 'Knockout is required, please ensure it is loaded before loading the activity plug-in';
   }
 
-  var defaultOptions = {
-    activityClass: 'fa fa-spinner fa-spin',
-    container: 'i',
-    inactiveClass: ''
-  };
-
   function getOptions(overrides) {
-    var options = ko.utils.extend({}, defaultOptions);
+    var options = ko.utils.extend({}, ko.bindingHandlers.activity.defaultOptions);
 
     return ko.utils.extend(options, overrides);
   }
@@ -54,5 +48,11 @@
         element.activityIndicator.className = options.inactiveClass;
       }
     }
+  };
+  
+  ko.bindingHandlers.activity.defaultOptions = {
+    activityClass: 'fa fa-spinner fa-spin',
+    container: 'i',
+    inactiveClass: ''
   };
 }));
