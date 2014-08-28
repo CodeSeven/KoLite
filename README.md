@@ -6,7 +6,7 @@
 3. activity
 4. dirtyFlag
 
-**Current Version** is 1.1.0
+**Current Version** is 1.2.0
 
 See this post for more details on KoLite: http://www.johnpapa.net/kolite1-1
 
