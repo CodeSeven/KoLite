@@ -1,0 +1,21 @@
+{
+  "name": "kolite",
+  "authors": [
+    "CodeSeven"
+  ],
+  "description": "This is a fork of original author CodeSeven's branch simply to add bower.json file.",
+  "keywords": [
+    "knockout", "kolite", "activity", "command", "dirtyFlag"
+  ],
+  "homepage": "https://github.com/CodeSeven/KoLite",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": ">=2.0.0"
+  }
+}
