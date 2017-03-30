@@ -1,4 +1,11 @@
 # KoLite
+
+### THIS PROJECT IS UNMAINTAINED
+
+This means that bugs will not be fixed and features will not be added unless someone else does so.  Unfortunately, the former maintainers no longer have the time and/or resources to work on KoLite further.
+
+If you're interested in fixing up KoLite, please reply to this [GitHub issue (55)](https://github.com/CodeSeven/KoLite/issues/55).
+
 **KoLite** contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout. Including:
 
 1. asyncCommand
